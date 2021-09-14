@@ -1,6 +1,16 @@
 "use strict"
 
-const pokedex = document.getElementById("pokedex");
+const pokedex = $("#pokedex");
+const userSearch = $("#user-search");
+const searchBtn = $("#search-btn");
+let pokemonCharacters = [];
+
+userSearch.keyup((e) => {
+    const searchString = e.target.value;
+    const filteredPokemon = pokemonCharacters.filter((character) => {
+        return character.name.includes(searchString);
+    })
+})
 
 // iterating 1-150 of the pokemon and pushing each one to empty array named promises
 const getPokemon = () => {
@@ -23,18 +33,22 @@ const getPokemon = () => {
 const displayPokemon = (pokemon) => {
     const html = pokemon
         .map((pokeman) => `
-        <li class="card">
-            <img class="card-image" src="${pokeman.image}"/>
-            <h2 class="card-title">${pokeman.id}. ${pokeman.name}</h2>
-            <p class="card-subtitle">Type: ${pokeman.type}</p>
-        </li>
+        <div class="card" style="width: 18rem;">
+    <img src="${pokeman.image}" class="card-img-top" alt="pokemon-image">
+        <div class="card-body">
+            <h5 class="card-title">${pokeman.id}. ${pokeman.name}</h5>
+            <p class="card-text">Type: ${pokeman.type}</p>
+            <a href="#" class="btn btn-primary" id="single-view">Go somewhere</a>
+        </div>
+</div>
     `
         )
         .join("");
-    pokedex.innerHTML = html;
+    pokedex.html(html);
 };
 
 getPokemon();
+
 
 
 
