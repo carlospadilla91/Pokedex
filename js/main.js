@@ -5,6 +5,10 @@ const userSearch = $("#user-search");
 const searchBtn = $("#search-btn");
 let pokemonCharacters = [];
 
+$(document).ready(() => {
+    $('#pokedex').html('loading...');
+})
+
 userSearch.keyup((e) => {
     const searchString = e.target.value;
     console.log(searchString)
