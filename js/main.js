@@ -16,12 +16,12 @@ userSearch.keyup((e) => {
         console.log(character);
         return (character.name.includes(searchString) || character.type.includes(searchString));
     })
-    displayPokemon(filteredPokemon);
+    console.log(filteredPokemon);
+    // displayPokemon(filteredPokemon);
 })
 
 // iterating 1-150 of the pokemon and pushing each one to empty array named promises
 const getPokemon = () => {
-    pokemonCharacters = [];
     for (let i = 1; i <= 150; i++) {
         const apiUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
         pokemonCharacters.push(fetch(apiUrl).then(res => res.json()));
@@ -38,18 +38,34 @@ const getPokemon = () => {
 }
 
 // const fetchPokemon = async () => {
-//     const url = `https://pokeapi.co/api/v2/pokemon?limit=150`;
-//     const res = await fetch(url);
-//     pokemonCharacters = await res.json();
-//     console.log(pokemonCharacters);
-//     const pokemon = pokemonCharacters.results.map((data, index) => ({
-//         name: data.name,
-//         id: index + 1,
-//         type: data.types.map((type) => type.type.name).join(", "),
-//         image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
+//     try {
+//         const url = `https://pokeapi.co/api/v2/pokemon?limit=150`;
+//         const res = await fetch(url);
+//         pokemonCharacters = await res.json();
+//         console.log(pokemonCharacters);
+//         const pokemon = pokemonCharacters.results.map((data, index) => ({
+//             name: data.name,
+//             id: index + 1,
+//             type: data.types.map((type) => type.type.name).join(", "),
+//             image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
 //
-//     }))
+//         }))
+//     } catch (err) {
+//         console.log()
+//     }
 //     displayPokemon(pokemon);
+// }
+//
+// const loadPokemon = async () => {
+//     try {
+//         for (let i = 1; i <= 150; i++) {
+//             const apiUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+//             pokemonCharacters = await pokemonCharacters.push(fetch(apiUrl).then(res => res.json()));
+//             displayPokemon(pokemonCharacters);
+//         }
+//     } catch(err) {
+//         console.log(err);
+//     }
 // }
 
 const displayPokemon = (pokemon) => {
@@ -70,6 +86,7 @@ const displayPokemon = (pokemon) => {
 };
 
 getPokemon();
+// loadPokemon();
 // fetchPokemon();
 // console.log(pokemonCharacters)
 
